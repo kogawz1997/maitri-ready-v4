@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Toaster } from 'sonner';
 import './globals.css';
 
+export const dynamic = 'force-dynamic';
+
 const fontVariables = '[--font-display:Georgia,serif] [--font-sans:Inter,system-ui,sans-serif] [--font-mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace]';
 
 export const metadata: Metadata = {

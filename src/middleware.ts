@@ -1,12 +1,19 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
+import { getPublicSupabaseEnv } from '@/lib/env';
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
 
+  const publicEnv = getPublicSupabaseEnv();
+
+  if (!publicEnv.configured) {
+    return response;
+  }
+
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    publicEnv.url,
+    publicEnv.anonKey,
     {
       cookies: {
         getAll() { return request.cookies.getAll(); },

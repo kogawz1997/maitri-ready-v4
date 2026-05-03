@@ -2,6 +2,8 @@ import { createAdminClient } from '@/lib/supabase/server';
 import { BookingEngine } from '@/components/booking/booking-engine';
 import { notFound } from 'next/navigation';
 
+export const dynamic = 'force-dynamic';
+
 export default async function BookingPage({ params }: { params: Promise<{ hotel: string }> }) {
   const { hotel: slug } = await params;
   const supabase = createAdminClient();
